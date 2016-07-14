@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Take exam</title>
+    {% load staticfiles %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/json2.js' %}"></script>
+    {#    importing css #}
+    <link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %}">
+    <link rel="script" href="{% static 'materialize/js/materialize.js' %}">
+    <link rel="script" href="{% static 'js/jquery.js' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Quiz Master</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="button" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<form method="post">
+    {% csrf_token %}
+<div class="questions"></div>
+    <input type="submit" formmethod="post" value="Submit"/>
+</form>
+<script type="text/javascript">
+    var sons=eval({{ jsonset|safe }});
+    for (var i =0;i<sons.length;i++){
+        var newContainer=$('<div class="question"></div>');
+        newContainer.append('<ul class="options collection with-header" style="list-style: none"><li class="collection-header"><h4>'+(sons[i].fields.text)+'</h4></li></ul>');
+        newContainer.append('<li><input type="radio" value='+1+ ' name="question'+(i+1)+'" id='+sons[i].pk + '1' + ' />'+'<label for='+sons[i].pk+'1>'+sons[i].fields.option1+'</label></li>');
+        newContainer.append('<li><input type="radio" value='+2+ ' name="question'+(i+1)+'" id='+sons[i].pk + '2' + ' />'+'<label for='+sons[i].pk+'2>'+sons[i].fields.option2+'</label></li>');
+        newContainer.append('<li><input type="radio" value='+3+ ' name="question'+(i+1)+'" id='+sons[i].pk + '3' + ' />'+'<label for='+sons[i].pk+'3>'+sons[i].fields.option3+'</label></li>');
+        newContainer.append('<li><input type="radio" value='+4+ ' name="question'+(i+1)+'" id='+sons[i].pk + '4' + ' />'+'<label for='+sons[i].pk+'4>'+sons[i].fields.option4+'</label></li>');
+        $('.questions').append(newContainer);
+    }
+    var my_eval=function () {
+        var your=$(".question input:checked");
+        var j=0;
+        for(var i=0;i<sons.length;i++){
+            console.log(your[i].val());
+        }
+        console.log(your);
+    }
+</script>
+
+</body>
+</html>

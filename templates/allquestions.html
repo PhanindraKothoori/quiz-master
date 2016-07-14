@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questions</title>
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Quiz Master</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="button" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<ul>
+{% for question in object_list %}
+   <li>{{ question }}</li>
+    <ol style="list-style: decimal">
+        <li>{{ question.option1 }}</li>
+        <li>{{ question.option2 }}</li>
+        <li>{{ question.option3 }}</li>
+        <li>{{ question.option4 }}</li>
+    </ol>
+    <span>correct option : {{ question.correctoption }}</span>
+    <a href="/quiz/editquestion/{{ question.id }}">Edit Question</a>
+    <a href="/quiz/deletequestion/{{ question.id }}">Delete Question</a>
+{% endfor %}
+</ul>
+<a href="/quiz/home">Back Home</a>
+</body>
+</html>

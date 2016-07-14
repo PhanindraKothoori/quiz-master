@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    {#    importing css #}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %}">
+    <link rel="script" href="{% static 'materialize/js/materialize.js' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="container">
+<div class="container form-group">
+<div class="jumbotron" >
+	<div class="container-fluid">
+		<h2>Sign Up for Quiz Master!</h2>
+
+	</div>
+</div>
+
+<form class="form" method="post" >
+    {% csrf_token %}
+    {{ form.username.label }}:
+    {{ form.username }}
+    {{ form.email.label }}:
+    {{ form.email }}
+    {{ form.first_name.label }}:
+    {{ form.first_name }}
+    {{ form.last_name.label }}:
+    {{ form.last_name }}
+    {{ form.password.label }}:
+    {{ form.password }}
+
+
+    <input class="btn" type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>

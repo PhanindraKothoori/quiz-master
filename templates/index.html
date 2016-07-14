@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome!</title>
+    {#    importing css #}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %}">
+    <link rel="script" href="{% static 'materialize/js/materialize.js' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="jumbotron">
+	<div class="container row center">
+		<h1>Hey There!</h1>
+		<h2>Introducing Quiz Master.</h2>
+		<h3>No open leaderboards. No inhibitions.</h3>
+        <div class="col l6 center-align">
+            <a class="btn center-align" href="/login/">Login</a>
+        </div>
+        <div class="col l6 center-align">
+            <a class="btn center-align" href="/signup/">Sign Up</a>
+        </div>
+	</div>
+</div>
+</body>
+</html>

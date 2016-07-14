@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Exam</title>
+    {#    importing css #}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %}">
+    <link rel="script" href="{% static 'materialize/js/materialize.js' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Quiz Master</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="button" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="jumbotron">
+	<div class="container">
+		<h3>New Exam</h3>
+    </div>
+</div>
+<div class="container">
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>

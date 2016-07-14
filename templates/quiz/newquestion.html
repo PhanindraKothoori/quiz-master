@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Question</title>
+    {#    importing css #}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %}">
+    <link rel="script" href="{% static 'materialize/js/materialize.js' %}">
+    <link rel="script" href="{% static 'js/jquery.js' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Quiz Master</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a class="button" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="jumbotron">
+	<div class="container">
+		<h5>Add a question to your exam!</h5>
+	</div>
+</div>
+
+<div class="container">
+<form class="form" method="post" class="form-switcher">
+    {% csrf_token %}
+
+    {{ form.text.label }}: {{ form.text }}
+    {{ form.option1.label }}: {{ form.option1 }}
+    {{ form.option2.label }}: {{ form.option2 }}
+    {{ form.option3.label }}: {{ form.option3 }}
+    {{ form.option4.label }}: {{ form.option4 }}
+    {{ form.correctoption.label }}: {{ form.correctoption }}
+{{ form.exam.label }}:
+<div class="input-field">
+    <select class="browser-default" id="id_exam" name="exam">
+    {% for x,y in form.fields.exam.choices %}
+        {% if x|stringformat:"s" ==  examid|stringformat:"s"  %}
+            <option value="{{ x }}" selected="selected">{{ y }}</option>
+        {% endif %}
+    {% endfor %}
+    </select>
+</div>
+    <input class="btn" type="submit" value="Save">
+</form>
+</div>
+
+</body>
+</html>
